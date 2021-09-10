@@ -39,7 +39,7 @@
                   <a class="nav-link active" aria-current="page" href="user_account.php?id=<?=$login_user->id?>">アカウント</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="message_top.php?id=<?=$login_user->id?>">メッセージ</a>
+                  <a class="nav-link" href="message_show.php?id=<?=$login_user->id?>">メッセージ</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="logout">ログアウト</a>

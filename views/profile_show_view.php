@@ -46,8 +46,8 @@
                   <h2>ユーザー名：&nbsp;<?=$profile->name?>さん</h2>
                   <ul>
                      <li><?=$profile->created_at?>からユーザーサービスを利用してます</li>
-                     <li><a href="profile_edit.php?id=<?=$login_user->id?>">プロフィールを編集</a></li>
-                     <li><a href="message_show.php?id=<?=$profile->user_id?>">メッセージ送信</a></li>
+                     <li><a href="profile_edit.php?id=<?= $login_user->id ?>">プロフィールを編集</a></li>
+                     <li><a href="message_show.php?id=<?= $login_user->id ?>">メッセージ送信</a></li>
                   </ul>
    
                <?php if($flash_message !== null):?>

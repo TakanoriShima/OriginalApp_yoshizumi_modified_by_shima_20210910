@@ -102,6 +102,24 @@
                  }               
                     
                 }
+                
+     //特定の人物以外のユーザー一覧を取得
+     public static function get_users_except_me($id){
+         try{
+                $pdo = self::get_connection();
+                $stmt = $pdo -> prepare("SELECT * FROM users WHERE id != :id");
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->execute();
+                // フェッチの結果を、Userクラスのインスタンスにマッピングする
+                $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'User');
+                // Userクラスのインスタンス配列を返す
+                $users = $stmt->fetchAll();  
+                self::close_connection($pdo, $stmp);
+                return $users;                
+         }catch(PDOException $e){
+                return 'PDO exception: ' . $e->getMessage();
+         }
+     }     
      
      
   }

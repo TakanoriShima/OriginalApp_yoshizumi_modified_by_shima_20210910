@@ -9,27 +9,30 @@
   session_start();
   
   // セッションからログインユーザー情報を取得
-   //ログインユーザーを送信ユーザーとする
+  // ログインユーザーを送信ユーザーとする
   $login_user = $_SESSION["login_user"];
-  $send_user_id=$login_user->id;
+  $send_user_id = $login_user->id;
 
-///GETから送られてきた受信先ユーザーのidを取得
-  $receive_user_id=($_GET[id]);
-
-
-      
-//セッションからメッセージを取得
+  //GETから送られてきた受信先ユーザーのidを取得
+  $receive_user_id=($_GET["id"]);
+  
+  // 自分以外のユーザー一覧を取得
+  $users = User::get_users_except_me($send_user_id);
+  
+  //セッションからメッセージを取得
   $flash_message = $_SESSION['flash_message'];
   $_SESSION["flash_message"] = null;
   //エラーがあればエラーを取得
   $errors =$_SESSION["errors"];
   $_SESSION["errors"] =null;
 
-//メッセージ情報を取得
-  $messages = Message::get_message($send_user_id,$receive_user_id);
-  
-//セッションからユーザーアイコンを取得
-    $user_icon = $_SESSION["user_icon"];
+  //メッセージ情報を取得
+  $messages = Message::get_message($send_user_id, $receive_user_id);
+
+  // var_dump($messages);
+ 
+  //セッションからユーザーアイコンを取得
+  $user_icon = $_SESSION["user_icon"];
 
   include_once "views/message_show_view.php";
 

@@ -84,7 +84,15 @@
                <h2>アカウント</h2>
                
                <div class="d-flex h-100 w-100 justify-content-between">
-                  <div class="w-25 h-100 border"></div>
+                  
+                  <div class="w-25 h-100 border">
+                     <ul>
+                     <?php foreach($users as $user): ?>
+                     <li><a href="message_show.php?id=<?= $user->id ?>"><?= $user->name ?></a></li>
+                     <?php endforeach; ?>
+                     </ul>
+                  </div>
+                  
                   <div class="w-50 h-100 border">
                      <div id="message-wrapper">
                      <div class="flex">
